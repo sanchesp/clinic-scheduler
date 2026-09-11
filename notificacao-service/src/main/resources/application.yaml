@@ -1,3 +1,20 @@
 spring:
   application:
     name: notificacao-service
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+server:
+  port: 8083
+
+app:
+  messaging:
+    exchange: consultas.exchange
+    queue: notificacoes.queue
+    routing-key:
+      criada: consulta.criada
+      atualizada: consulta.atualizada

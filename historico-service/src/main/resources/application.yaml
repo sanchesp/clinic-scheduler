@@ -4,7 +4,8 @@ spring:
     name: historico-service
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/historico_db
+    url: jdbc:postgresql://localhost:5432/healthcare_db
+    driver-class-name: org.postgresql.Driver
     username: postgres
     password: postgres
 

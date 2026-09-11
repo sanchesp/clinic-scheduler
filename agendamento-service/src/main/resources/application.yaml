@@ -3,7 +3,7 @@ spring:
     name: agendamento-service
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/agendamento
+    url: jdbc:postgresql://localhost:5432/healthcare_db
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: postgres

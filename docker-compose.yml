@@ -15,7 +15,7 @@ services:
     container_name: agendamento-postgres
     restart: unless-stopped
     environment:
-      POSTGRES_DB: agendamento
+      POSTGRES_DB: healthcare_db
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:

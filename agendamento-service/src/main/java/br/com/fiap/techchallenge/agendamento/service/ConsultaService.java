@@ -47,14 +47,17 @@ public class ConsultaService implements ConsultaUseCase {
     public ConsultaResponse create(ConsultaRequest request) {
         Usuario paciente = usuarioRepository.findById(request.pacienteId())
                 .filter(Paciente.class::isInstance)
-                .orElseThrow(() -> new IllegalArgumentException("pacienteId informado não corresponde a um paciente válido"));
+                .orElseThrow(() -> new IllegalArgumentException(
+                        "pacienteId informado não corresponde a um paciente válido"));
 
         Usuario medico = usuarioRepository.findById(request.medicoId())
                 .filter(Medico.class::isInstance)
-                .orElseThrow(() -> new IllegalArgumentException("medicoId informado não corresponde a um médico válido"));
+                .orElseThrow(() -> new IllegalArgumentException(
+                        "medicoId informado não corresponde a um médico válido"));
 
         if (Objects.equals(paciente.getId(), medico.getId())) {
-            throw new IllegalArgumentException("Paciente e médico não podem ser o mesmo usuário");
+            throw new IllegalArgumentException(
+                    "Paciente e médico não podem ser o mesmo usuário");
         }
 
         Usuario registradoPor = usuarioAutenticado();
@@ -69,7 +72,8 @@ public class ConsultaService implements ConsultaUseCase {
         consulta.setCriadoEm(LocalDateTime.now());
         consulta.setLastModifiedAt(LocalDateTime.now());
 
-        consultaRepository.save(consulta);
+        consultaRepository.saveAndFlush(consulta);
+
         publicarEvento(consulta, routingKeyCriada);
 
         return ConsultaResponse.from(consulta);
@@ -81,21 +85,26 @@ public class ConsultaService implements ConsultaUseCase {
         Consulta consulta = buscarPorIdOuFalhar(id);
 
         if (consulta.getStatus() == StatusConsulta.CANCELADA) {
-            throw new IllegalArgumentException("Não é possível atualizar uma consulta cancelada");
+            throw new IllegalArgumentException(
+                    "Não é possível atualizar uma consulta cancelada");
         }
 
         if (request.dataHora() != null) {
             consulta.setDataHora(request.dataHora());
         }
+
         if (request.status() != null) {
             consulta.setStatus(request.status());
         }
+
         if (request.observacoes() != null) {
             consulta.setObservacoes(request.observacoes());
         }
+
         consulta.setLastModifiedAt(LocalDateTime.now());
 
-        consultaRepository.save(consulta);
+        consultaRepository.saveAndFlush(consulta);
+
         publicarEvento(consulta, routingKeyAtualizada);
 
         return ConsultaResponse.from(consulta);
