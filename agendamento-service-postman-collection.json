@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "8b5b7d3b-9f1d-4e7d-a8a1-agendamento-service",
     "name": "Agendamento Service - FIAP",
-    "description": "Collection gerada a partir dos controllers e DTOs do projeto. Cria usuários de teste, autentica e reutiliza os JWTs automaticamente.",
+    "description": "Collection do projeto FIAP. Cria usuários de teste, autentica e reutiliza os JWTs automaticamente. Testa as APIs REST do agendamento-service, o GraphQL do historico-service através do API Gateway e os principais cenários de segurança.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
@@ -74,8 +74,12 @@
               "listen": "test",
               "script": {
                 "exec": [
+                  "pm.test('Usuário médico criado', function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "",
                   "if (pm.response.code === 201) {",
-                  "  pm.collectionVariables.set('medicoId', pm.response.json().id);",
+                  "    pm.collectionVariables.set('medicoId', pm.response.json().id);",
                   "}"
                 ]
               }
@@ -113,8 +117,12 @@
               "listen": "test",
               "script": {
                 "exec": [
+                  "pm.test('Usuário enfermeiro criado', function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "",
                   "if (pm.response.code === 201) {",
-                  "  pm.collectionVariables.set('enfermeiroId', pm.response.json().id);",
+                  "    pm.collectionVariables.set('enfermeiroId', pm.response.json().id);",
                   "}"
                 ]
               }
@@ -152,8 +160,12 @@
               "listen": "test",
               "script": {
                 "exec": [
+                  "pm.test('Usuário paciente criado', function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "",
                   "if (pm.response.code === 201) {",
-                  "  pm.collectionVariables.set('pacienteId', pm.response.json().id);",
+                  "    pm.collectionVariables.set('pacienteId', pm.response.json().id);",
                   "}"
                 ]
               }
@@ -197,8 +209,14 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "pm.test('Login retornou 200', function () { pm.response.to.have.status(200); });",
-                  "pm.test('Token foi retornado', function () { pm.expect(pm.response.json().token).to.be.a('string').and.not.empty; });",
+                  "pm.test('Login retornou 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Token foi retornado', function () {",
+                  "    pm.expect(pm.response.json().token).to.be.a('string').and.not.empty;",
+                  "});",
+                  "",
                   "pm.collectionVariables.set('tokenMedico', pm.response.json().token);"
                 ]
               }
@@ -237,7 +255,14 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "pm.test('Login retornou 200', function () { pm.response.to.have.status(200); });",
+                  "pm.test('Login retornou 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Token foi retornado', function () {",
+                  "    pm.expect(pm.response.json().token).to.be.a('string').and.not.empty;",
+                  "});",
+                  "",
                   "pm.collectionVariables.set('tokenEnfermeiro', pm.response.json().token);"
                 ]
               }
@@ -276,7 +301,14 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "pm.test('Login retornou 200', function () { pm.response.to.have.status(200); });",
+                  "pm.test('Login retornou 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Token foi retornado', function () {",
+                  "    pm.expect(pm.response.json().token).to.be.a('string').and.not.empty;",
+                  "});",
+                  "",
                   "pm.collectionVariables.set('tokenPaciente', pm.response.json().token);"
                 ]
               }
@@ -330,9 +362,12 @@
               "script": {
                 "exec": [
                   "if (pm.response.code === 201) {",
-                  "  pm.collectionVariables.set('consultaId', pm.response.json().id);",
+                  "    pm.collectionVariables.set('consultaId', pm.response.json().id);",
                   "}",
-                  "pm.test('Consulta criada ou resposta esperada', function () { pm.expect([201, 400, 409]).to.include(pm.response.code); });"
+                  "",
+                  "pm.test('Consulta criada ou resposta esperada', function () {",
+                  "    pm.expect([201, 400, 409]).to.include(pm.response.code);",
+                  "});"
                 ]
               }
             }
@@ -541,7 +576,19 @@
                 "consultas"
               ]
             }
-          }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Acesso sem token deve retornar 401', function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});"
+                ]
+              }
+            }
+          ]
         },
         {
           "name": "Criar Consulta - Paciente - 403",
@@ -578,7 +625,19 @@
                 "consultas"
               ]
             }
-          }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Paciente não pode criar consulta', function () {",
+                  "    pm.response.to.have.status(403);",
+                  "});"
+                ]
+              }
+            }
+          ]
         },
         {
           "name": "Atualizar Consulta - Enfermeiro - 403",
@@ -616,7 +675,293 @@
                 "{{consultaId}}"
               ]
             }
-          }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Enfermeiro não pode atualizar consulta', function () {",
+                  "    pm.response.to.have.status(403);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GraphQL sem Token - 401",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"query { historicoPaciente(pacienteId: {{pacienteId}}) { id pacienteId medicoId dataHora status descricao diagnostico } }\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/graphql",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "graphql"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('GraphQL sem token deve retornar 401', function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "5 - Histórico GraphQL",
+      "item": [
+        {
+          "name": "Histórico do Paciente - Médico",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{tokenMedico}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"query { historicoPaciente(pacienteId: {{pacienteId}}) { id pacienteId medicoId dataHora status descricao diagnostico } }\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/graphql",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "graphql"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('GraphQL retornou 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Resposta GraphQL não contém erro', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.errors).to.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('Histórico do paciente foi retornado', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.data).to.have.property('historicoPaciente');",
+                  "    pm.expect(json.data.historicoPaciente).to.be.an('array');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Histórico do Paciente - Enfermeiro",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{tokenEnfermeiro}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"query { historicoPaciente(pacienteId: {{pacienteId}}) { id pacienteId medicoId dataHora status descricao diagnostico } }\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/graphql",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "graphql"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('GraphQL retornou 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Resposta GraphQL não contém erro', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.errors).to.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('Histórico do paciente foi retornado', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.data).to.have.property('historicoPaciente');",
+                  "    pm.expect(json.data.historicoPaciente).to.be.an('array');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Histórico do Paciente - Paciente",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{tokenPaciente}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"query { historicoPaciente(pacienteId: {{pacienteId}}) { id pacienteId medicoId dataHora status descricao diagnostico } }\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/graphql",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "graphql"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('GraphQL retornou 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Resposta GraphQL não contém erro', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.errors).to.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('Histórico do paciente foi retornado', function () {",
+                  "    const json = pm.response.json();",
+                  "    pm.expect(json.data).to.have.property('historicoPaciente');",
+                  "    pm.expect(json.data.historicoPaciente).to.be.an('array');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "6 - Fluxo de Integração",
+      "item": [
+        {
+          "name": "Criar Consulta para Disparar Notificação",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{tokenMedico}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pacienteId\": {{pacienteId}},\n  \"medicoId\": {{medicoId}},\n  \"dataHora\": \"2030-12-25T14:00:00\",\n  \"observacoes\": \"Consulta criada para teste de integração RabbitMQ\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/consultas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "consultas"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    pm.collectionVariables.set('consultaId', pm.response.json().id);",
+                  "}",
+                  "",
+                  "pm.test('Consulta criada para teste de integração', function () {",
+                  "    pm.expect([201, 400, 409]).to.include(pm.response.code);",
+                  "});"
+                ]
+              }
+            }
+          ]
         }
       ]
     }

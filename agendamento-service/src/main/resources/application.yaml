@@ -23,6 +23,9 @@ jwt:
   secret: ${JWT_SECRET:bXlTdXBlclNlY3JldEtleUZvckpXVDEyMzQ1Njc4OTA=}
   expiration: ${JWT_EXPIRATION:3600000}
 
+server:
+  port: 8081
+
 app:
   messaging:
     exchange: consultas.exchange
