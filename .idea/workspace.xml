@@ -7,12 +7,25 @@
     <option name="selectedModelId" value="auto" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9fe1b57c-0c8e-43d8-8b84-6e50900f6ea1" name="Changes" comment="implementa o service de notificacao e atualiza o banco de dados do services de agendamento e historico">
+    <list default="true" id="9fe1b57c-0c8e-43d8-8b84-6e50900f6ea1" name="Changes" comment="implementa o gateway e ajusta a collection do postman">
+      <change afterPath="$PROJECT_DIR$/historico-service/src/test/java/br/com/fiap/techchalleger/historicoservice/config/JwtConfigTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/historico-service/src/test/java/br/com/fiap/techchalleger/historicoservice/config/SecurityConfigTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/historico-service/src/test/java/br/com/fiap/techchalleger/historicoservice/controller/HistoricoGraphQLController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/historico-service/src/test/java/br/com/fiap/techchalleger/historicoservice/controller/HistoricoGraphQLIntegrationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/historico-service/src/test/java/br/com/fiap/techchalleger/historicoservice/repository/ConsultaRepositoryTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/historico-service/src/test/java/br/com/fiap/techchalleger/historicoservice/service/HistoricoServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/historico-service/src/test/resources/application-test.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notificacao-service/src/test/java/br/com/fiap/techchalleger/notificacaoservice/config/RabbitMQConfigTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notificacao-service/src/test/java/br/com/fiap/techchalleger/notificacaoservice/consumer/ConsultaEventConsumerIntegrationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notificacao-service/src/test/java/br/com/fiap/techchalleger/notificacaoservice/consumer/ConsultaEventConsumerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notificacao-service/src/test/java/br/com/fiap/techchalleger/notificacaoservice/service/NotificacaoServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agendamento-service/agendamento-service-postman-collection.json" beforeDir="false" afterPath="$PROJECT_DIR$/agendamento-service-postman-collection.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agendamento-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/agendamento-service/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/test/java/br/com/fiap/techchalleger/apigateway/ApiGatewayApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/test/java/br/com/fiap/techchalleger/apigateway/ApiGatewayApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/historico-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/historico-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/historico-service/src/main/java/br/com/fiap/techchalleger/historicoservice/controller/HistoricoGraphQLController.java" beforeDir="false" afterPath="$PROJECT_DIR$/historico-service/src/main/java/br/com/fiap/techchalleger/historicoservice/controller/HistoricoGraphQLController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/historico-service/src/main/java/br/com/fiap/techchalleger/historicoservice/exception/ConsultaNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/historico-service/src/main/java/br/com/fiap/techchalleger/historicoservice/exception/ConsultaNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/historico-service/src/main/java/br/com/fiap/techchalleger/historicoservice/service/HistoricoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/historico-service/src/main/java/br/com/fiap/techchalleger/historicoservice/service/HistoricoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notificacao-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/notificacao-service/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,8 +42,8 @@
       <list>
         <option value="Exception" />
         <option value="Record" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -59,6 +72,21 @@
   &quot;fromUser&quot;: false
 }</component>
   <component name="ProjectId" id="3IsB6UmpXorL4dVsBfvRXcvc8CE" />
+  <component name="ProjectSessionTemplates">
+    <option name="panelTemplate">
+      <template>
+        <option name="modeId" value="Agent" />
+        <option name="model">
+          <model>
+            <option name="modelType" value="builtin_id" />
+            <option name="modelValue" value="auto" />
+          </model>
+        </option>
+        <option name="targetType" value="BACKGROUND" />
+        <option name="worktreeMode" value="WORKSPACE" />
+      </template>
+    </option>
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -66,6 +94,22 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Docker.docker-compose.yml.postgres: Compose Deployment.executor": "Run",
+    "JUnit.ApiGatewayApplicationTest.executor": "Run",
+    "JUnit.ConsultaEventConsumerIntegrationTest.executor": "Run",
+    "JUnit.ConsultaEventConsumerTest.executor": "Run",
+    "JUnit.ConsultaRepositoryTest.executor": "Run",
+    "JUnit.HistoricoGraphQLControllerTest.deveBuscarHistoricoDoPaciente.executor": "Run",
+    "JUnit.HistoricoGraphQLControllerTest.executor": "Run",
+    "JUnit.HistoricoGraphQLIntegrationTest.deveNegarHistoricoDeOutroPaciente.executor": "Run",
+    "JUnit.HistoricoGraphQLIntegrationTest.executor": "Run",
+    "JUnit.HistoricoServiceTest.executor": "Run",
+    "JUnit.JwtConfigTest.deveConverterRoleDoJwtParaAuthority.executor": "Run",
+    "JUnit.JwtConfigTest.executor": "Run",
+    "JUnit.NotificacaoServiceTest.deveProcessarEventoSemLancarExcecao.executor": "Run",
+    "JUnit.NotificacaoServiceTest.executor": "Run",
+    "JUnit.RabbitMQConfigTest.executor": "Run",
+    "JUnit.SecurityConfigTest.deveCriarSecurityFilterChain.executor": "Run",
+    "JUnit.SecurityConfigTest.executor": "Run",
     "Maven.clinic-scheduler [clean].executor": "Run",
     "Maven.clinic-scheduler [install].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
@@ -86,7 +130,10 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.jshint": "",
     "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm"
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -94,59 +141,79 @@
       <recent name="D:\workspace\clinic-scheduler" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.NotificacaoServiceApplication">
-    <configuration name="AgendamentoServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
-      <module name="agendamento-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="br.com.fiap.techchallenge.agendamento.AgendamentoServiceApplication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="br.com.fiap.techchallenge.agendamento.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
+  <component name="RunManager" selected="JUnit.ApiGatewayRoutesTest">
+    <configuration name="ApiGatewayApplicationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="api-gateway" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="br.com.fiap.techchalleger.apigateway.ApiGatewayApplication" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="br.com.fiap.techchalleger.apigateway.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="br.com.fiap.techchalleger.apigateway" />
+      <option name="MAIN_CLASS_NAME" value="br.com.fiap.techchalleger.apigateway.ApiGatewayApplicationTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HistoricoServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
-      <module name="historico-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="br.com.fiap.techchalleger.historicoservice.HistoricoServiceApplication" />
+    <configuration name="ApiGatewayRoutesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="api-gateway" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="br.com.fiap.techchalleger.historicoservice.*" />
+          <option name="PATTERN" value="br.com.fiap.techchalleger.apigateway.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="br.com.fiap.techchalleger.apigateway" />
+      <option name="MAIN_CLASS_NAME" value="br.com.fiap.techchalleger.apigateway.ApiGatewayRoutesTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NotificacaoServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
+    <configuration name="ConsultaEventConsumerIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="notificacao-service" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="br.com.fiap.techchalleger.notificacaoservice.NotificacaoServiceApplication" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="br.com.fiap.techchalleger.notificacaoservice.*" />
+          <option name="PATTERN" value="br.com.fiap.techchalleger.notificacaoservice.consumer.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="br.com.fiap.techchalleger.notificacaoservice.consumer" />
+      <option name="MAIN_CLASS_NAME" value="br.com.fiap.techchalleger.notificacaoservice.consumer.ConsultaEventConsumerIntegrationTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NotificacaoServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="notificacao-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.fiap.techchalleger.notificacaoservice.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="br.com.fiap.techchalleger.notificacaoservice.service" />
+      <option name="MAIN_CLASS_NAME" value="br.com.fiap.techchalleger.notificacaoservice.service.NotificacaoServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NotificacaoServiceTest.deveProcessarEventoSemLancarExcecao" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="notificacao-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.fiap.techchalleger.notificacaoservice.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="br.com.fiap.techchalleger.notificacaoservice.service" />
+      <option name="MAIN_CLASS_NAME" value="br.com.fiap.techchalleger.notificacaoservice.service.NotificacaoServiceTest" />
+      <option name="METHOD_NAME" value="deveProcessarEventoSemLancarExcecao" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -157,26 +224,13 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yml.postgres: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="postgres" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.NotificacaoServiceApplication" />
-        <item itemvalue="Spring Boot.HistoricoServiceApplication" />
-        <item itemvalue="Spring Boot.AgendamentoServiceApplication" />
-        <item itemvalue="Spring Boot.ApiGatewayApplication" />
-        <item itemvalue="Docker.docker-compose.yml.postgres: Compose Deployment" />
+        <item itemvalue="JUnit.ApiGatewayRoutesTest" />
+        <item itemvalue="JUnit.ApiGatewayApplicationTest" />
+        <item itemvalue="JUnit.ConsultaEventConsumerIntegrationTest" />
+        <item itemvalue="JUnit.NotificacaoServiceTest" />
+        <item itemvalue="JUnit.NotificacaoServiceTest.deveProcessarEventoSemLancarExcecao" />
       </list>
     </recent_temporary>
   </component>
@@ -212,7 +266,15 @@
       <option name="project" value="LOCAL" />
       <updated>1789147677940</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="implementa o gateway e ajusta a collection do postman">
+      <option name="closed" value="true" />
+      <created>1789153990330</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1789153990330</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -221,6 +283,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="implementa o service de historico" />
     <MESSAGE value="implementa o service de notificacao e atualiza o banco de dados do services de agendamento e historico" />
-    <option name="LAST_COMMIT_MESSAGE" value="implementa o service de notificacao e atualiza o banco de dados do services de agendamento e historico" />
+    <MESSAGE value="implementa o gateway e ajusta a collection do postman" />
+    <option name="LAST_COMMIT_MESSAGE" value="implementa o gateway e ajusta a collection do postman" />
   </component>
 </project>
