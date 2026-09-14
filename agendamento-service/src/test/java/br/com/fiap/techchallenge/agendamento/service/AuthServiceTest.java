@@ -56,7 +56,7 @@ class AuthServiceTest {
         when(passwordEncoder.matches("123456", "senha-criptografada"))
                 .thenReturn(true);
 
-        when(jwtService.generateToken("dr_carlos", "MEDICO"))
+        when(jwtService.generateToken("dr_carlos", "MEDICO", 1L))
                 .thenReturn("token-valido");
 
         AuthResponse response = authService.authenticate(loginRequest);
@@ -66,7 +66,7 @@ class AuthServiceTest {
 
         verify(usuarioRepository).findByLogin("dr_carlos");
         verify(passwordEncoder).matches("123456", "senha-criptografada");
-        verify(jwtService).generateToken("dr_carlos", "MEDICO");
+        verify(jwtService).generateToken("dr_carlos", "MEDICO", 1L);
     }
 
     @Test
@@ -85,7 +85,7 @@ class AuthServiceTest {
         when(passwordEncoder.matches("123456", "senha-criptografada"))
                 .thenReturn(true);
 
-        when(jwtService.generateToken("joao_paciente", "PACIENTE"))
+        when(jwtService.generateToken("joao_paciente", "PACIENTE", 2L))
                 .thenReturn("token-paciente");
 
         AuthResponse response = authService.authenticate(request);
@@ -93,7 +93,7 @@ class AuthServiceTest {
         assertNotNull(response);
         assertEquals("token-paciente", response.token());
 
-        verify(jwtService).generateToken("joao_paciente", "PACIENTE");
+        verify(jwtService).generateToken("joao_paciente", "PACIENTE", 2L);
     }
 
     @Test
@@ -110,7 +110,7 @@ class AuthServiceTest {
 
         verify(usuarioRepository).findByLogin("usuario_inexistente");
         verify(passwordEncoder, never()).matches(any(), any());
-        verify(jwtService, never()).generateToken(any(), any());
+        verify(jwtService, never()).generateToken(any(), any(), any());
     }
 
     @Test
@@ -130,7 +130,7 @@ class AuthServiceTest {
 
         verify(usuarioRepository).findByLogin("dr_carlos");
         verify(passwordEncoder).matches("senha_incorreta", "senha-criptografada");
-        verify(jwtService, never()).generateToken(any(), any());
+        verify(jwtService, never()).generateToken(any(), any(), any());
     }
 
     @Test
@@ -147,7 +147,7 @@ class AuthServiceTest {
 
         verify(usuarioRepository).findByLogin("dr_carlos");
         verify(passwordEncoder, never()).matches(any(), any());
-        verify(jwtService, never()).generateToken(any(), any());
+        verify(jwtService, never()).generateToken(any(), any(), any());
     }
 
     @Test
@@ -158,12 +158,12 @@ class AuthServiceTest {
         when(passwordEncoder.matches("123456", "senha-criptografada"))
                 .thenReturn(true);
 
-        when(jwtService.generateToken("dr_carlos", "MEDICO"))
+        when(jwtService.generateToken("dr_carlos", "MEDICO", 1L))
                 .thenReturn("token-com-perfil");
 
         authService.authenticate(loginRequest);
 
-        verify(jwtService).generateToken("dr_carlos", "MEDICO");
+        verify(jwtService).generateToken("dr_carlos", "MEDICO", 1L);
     }
 
     @Test
@@ -179,12 +179,12 @@ class AuthServiceTest {
         when(passwordEncoder.matches("123456", "senha-criptografada"))
                 .thenReturn(true);
 
-        when(jwtService.generateToken("joao", "PACIENTE"))
+        when(jwtService.generateToken("joao", "PACIENTE", 2L))
                 .thenReturn("token");
 
         authService.authenticate(new LoginRequest("joao", "123456"));
 
-        verify(jwtService).generateToken("joao", "PACIENTE");
+        verify(jwtService).generateToken("joao", "PACIENTE", 2L);
     }
 
     @Test
@@ -197,7 +197,7 @@ class AuthServiceTest {
         when(passwordEncoder.matches("123456", "senha-criptografada"))
                 .thenReturn(true);
 
-        when(jwtService.generateToken("dr_carlos", "MEDICO"))
+        when(jwtService.generateToken("dr_carlos", "MEDICO", 1L))
                 .thenReturn(tokenEsperado);
 
         AuthResponse response = authService.authenticate(loginRequest);
