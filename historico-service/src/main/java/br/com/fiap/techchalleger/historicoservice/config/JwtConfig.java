@@ -45,6 +45,8 @@ public class JwtConfig {
                 authoritiesConverter
         );
 
+        converter.setPrincipalClaimName("userId");
+
         return converter;
     }
 }
