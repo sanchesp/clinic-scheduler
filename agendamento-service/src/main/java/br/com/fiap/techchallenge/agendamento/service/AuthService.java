@@ -37,7 +37,7 @@ public class AuthService implements AuthUseCase {
 
         // Perfil derivado do tipo concreto (Medico/Enfermeiro/Paciente) e gravado no token
         String perfil = usuario.getClass().getSimpleName().toUpperCase();
-        String token = jwtService.generateToken(usuario.getLogin(), perfil);
+        String token = jwtService.generateToken(usuario.getLogin(), perfil, usuario.getId());
 
         return new AuthResponse(token);
     }

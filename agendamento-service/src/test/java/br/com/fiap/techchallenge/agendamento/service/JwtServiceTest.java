@@ -34,12 +34,12 @@ class JwtServiceTest {
         ReflectionTestUtils.setField(jwtService, "secret", secret);
         ReflectionTestUtils.setField(jwtService, "expiration", expiration);
 
-        validToken = jwtService.generateToken("user@test.com", "MEDICO");
+        validToken = jwtService.generateToken("user@test.com", "MEDICO", 1L);
     }
 
     @Test
     void deveGerarTokenComSucesso() {
-        String token = jwtService.generateToken("joao_silva", "PACIENTE");
+        String token = jwtService.generateToken("joao_silva", "PACIENTE", 1L);
 
         assertNotNull(token);
         assertFalse(token.isEmpty());
@@ -51,7 +51,7 @@ class JwtServiceTest {
         String username = "dr_carlos";
         String role = "MEDICO";
 
-        String token = jwtService.generateToken(username, role);
+        String token = jwtService.generateToken(username, role, 1L);
 
         String usernameExtraido = jwtService.extractUsername(token);
 
@@ -63,7 +63,7 @@ class JwtServiceTest {
         String username = "joao";
         String role = "PACIENTE";
 
-        String token = jwtService.generateToken(username, role);
+        String token = jwtService.generateToken(username, role, 1L);
 
         String roleExtraido = jwtService.extractRole(token);
 
@@ -72,7 +72,7 @@ class JwtServiceTest {
 
     @Test
     void deveValidarTokenValido() {
-        String token = jwtService.generateToken("usuario", "MEDICO");
+        String token = jwtService.generateToken("usuario", "MEDICO", 1L);
 
         boolean valido = jwtService.isValid(token);
 
@@ -81,7 +81,7 @@ class JwtServiceTest {
 
     @Test
     void deveInvalidarTokenComSignaturaDiferente() {
-        String token = jwtService.generateToken("usuario", "MEDICO");
+        String token = jwtService.generateToken("usuario", "MEDICO", 1L);
 
         String tokenModificado = token.substring(0, token.length() - 10) + "MODIFICADO";
 
@@ -128,7 +128,7 @@ class JwtServiceTest {
         String username = "usuario_teste";
         String role = "ENFERMEIRO";
 
-        String token = jwtService.generateToken(username, role);
+        String token = jwtService.generateToken(username, role, 1L);
 
         String usuarioExtraido = jwtService.extractUsername(token);
         String roleExtraido = jwtService.extractRole(token);
@@ -139,23 +139,23 @@ class JwtServiceTest {
 
     @Test
     void deveGerarTokensDiferentesParaNomesDeUsuarioDiferentes() {
-        String token1 = jwtService.generateToken("usuario1", "MEDICO");
-        String token2 = jwtService.generateToken("usuario2", "MEDICO");
+        String token1 = jwtService.generateToken("usuario1", "MEDICO", 1L);
+        String token2 = jwtService.generateToken("usuario2", "MEDICO", 1L);
 
         assertNotEquals(token1, token2);
     }
 
     @Test
     void deveGerarTokensDiferentesParaRolesDiferentes() {
-        String token1 = jwtService.generateToken("usuario", "MEDICO");
-        String token2 = jwtService.generateToken("usuario", "PACIENTE");
+        String token1 = jwtService.generateToken("usuario", "MEDICO", 1L);
+        String token2 = jwtService.generateToken("usuario", "PACIENTE", 1L);
 
         assertNotEquals(token1, token2);
     }
 
     @Test
     void deveConterTresPartesNoToken() {
-        String token = jwtService.generateToken("usuario", "MEDICO");
+        String token = jwtService.generateToken("usuario", "MEDICO", 1L);
 
         String[] partes = token.split("\\.");
 
@@ -164,7 +164,7 @@ class JwtServiceTest {
 
     @Test
     void deveConterIssuedAtNoToken() {
-        String token = jwtService.generateToken("usuario", "MEDICO");
+        String token = jwtService.generateToken("usuario", "MEDICO", 1L);
 
         Claims claims = Jwts.parser()
                 .verifyWith(Keys.hmacShaKeyFor(Base64.getDecoder().decode(secret)))
@@ -177,7 +177,7 @@ class JwtServiceTest {
 
     @Test
     void deveConterExpirationNoToken() {
-        String token = jwtService.generateToken("usuario", "MEDICO");
+        String token = jwtService.generateToken("usuario", "MEDICO", 1L);
 
         Claims claims = Jwts.parser()
                 .verifyWith(Keys.hmacShaKeyFor(Base64.getDecoder().decode(secret)))
@@ -191,7 +191,7 @@ class JwtServiceTest {
     @Test
     void deveExtrairCaretoCorretoDoToken() {
         String roleEsperada = "MEDICO";
-        String token = jwtService.generateToken("usuario", roleEsperada);
+        String token = jwtService.generateToken("usuario", roleEsperada, 1L);
 
         String roleExtraida = jwtService.extractRole(token);
 
@@ -210,7 +210,7 @@ class JwtServiceTest {
     @Test
     void deveExtrairUsernameCorretoDoToken() {
         String usernameEsperado = "joao_silva";
-        String token = jwtService.generateToken(usernameEsperado, "PACIENTE");
+        String token = jwtService.generateToken(usernameEsperado, "PACIENTE", 1L);
 
         String usernameExtraido = jwtService.extractUsername(token);
 
@@ -219,7 +219,7 @@ class JwtServiceTest {
 
     @Test
     void deveValidarTokenComMultiplosClaims() {
-        String token = jwtService.generateToken("usuario", "MEDICO");
+        String token = jwtService.generateToken("usuario", "MEDICO", 1L);
 
         String username = jwtService.extractUsername(token);
         String role = jwtService.extractRole(token);

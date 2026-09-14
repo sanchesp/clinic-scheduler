@@ -3,8 +3,8 @@ spring:
     name: notificacao-service
 
   rabbitmq:
-    host: localhost
-    port: 5672
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
     username: guest
     password: guest
 

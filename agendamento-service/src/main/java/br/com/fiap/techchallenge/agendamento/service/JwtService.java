@@ -14,6 +14,7 @@ import java.util.Date;
 public class JwtService {
 
     private static final String CLAIM_ROLE = "role";
+    private static final String CLAIM_USER_ID = "userId";
 
     @Value("${jwt.secret}")
     private String secret;
@@ -22,10 +23,11 @@ public class JwtService {
     private long expiration;
 
 
-    public String generateToken(String username, String role) {
+    public String generateToken(String username, String role, Long userId) {
         return Jwts.builder()
                 .subject(username)
                 .claim(CLAIM_ROLE, role)
+                .claim(CLAIM_USER_ID, userId)
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(getKey(), Jwts.SIG.HS256)
